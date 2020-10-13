@@ -43,11 +43,21 @@ def main():
         contours, hierarchy = cv.findContours(edged,  
         cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
         font = cv.FONT_HERSHEY_SIMPLEX
-
+        maxSize = 0
+        maxIndex = 0
         for i in range(len(contours)):
             cnt = contours[i]
-            #x,y,w,h = cv.boundingRect(cnt)
-            #cv.rectangle(img2,(x,y),(x+w,y+h),(0,255,0),2)
+            
+            if(maxSize<cv.arcLength(cnt,True)):
+                maxSize = cv.arcLength(cnt,True)
+                maxIndex = i
+        
+        #x,y,w,h = cv.boundingRect(cnt)
+        #cv.rectangle(img2,(x,y),(x+w,y+h),(0,255,0),2)
+        print(maxIndex)
+        if(contours):
+            cv.drawContours(img2, contours, maxIndex, (0, 255, 0), 3)
+            cnt = contours[maxIndex]
             rect = cv.minAreaRect(cnt)
             box = cv.boxPoints(rect)
             box = np.int0(box)
