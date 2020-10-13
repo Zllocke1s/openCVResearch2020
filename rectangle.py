@@ -43,23 +43,30 @@ def main():
         contours, hierarchy = cv.findContours(edged,  
         cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
         font = cv.FONT_HERSHEY_SIMPLEX
-
+        maxSize = -1
+        maxIndex = -1
         for i in range(len(contours)):
             cnt = contours[i]
-            #x,y,w,h = cv.boundingRect(cnt)
-            #cv.rectangle(img2,(x,y),(x+w,y+h),(0,255,0),2)
-            rect = cv.minAreaRect(cnt)
-            box = cv.boxPoints(rect)
-            box = np.int0(box)
-            cv.drawContours(img2,[box],0,(0,0,255),2)
-            #print(box)
-            x1 = box[0][0]
-            x2 = box[1][0]
-            y1 = box[0][1]
-            y2 = box[1][1]
-            edgeLen = ((y2-y1)**2 + (x2-x1)**2)**.5
-            cv.putText(img2, str(round(edgeLen, 2)) ,(int((x2+x1)/2), int((y2+y1)/2)), font, .5,(0,0,255),2,cv.LINE_AA)
             
+            if(maxSize<cv2.arcLength(cnt,True)):
+                maxSize = cv2.arcLength(cnt,True)
+                maxIndex = i
+        
+        #x,y,w,h = cv.boundingRect(cnt)
+        #cv.rectangle(img2,(x,y),(x+w,y+h),(0,255,0),2)
+        cnt = contours[maxIndex]
+        rect = cv.minAreaRect(cnt)
+        box = cv.boxPoints(rect)
+        box = np.int0(box)
+        cv.drawContours(img2,[box],0,(0,0,255),2)
+        #print(box)
+        x1 = box[0][0]
+        x2 = box[1][0]
+        y1 = box[0][1]
+        y2 = box[1][1]
+        edgeLen = ((y2-y1)**2 + (x2-x1)**2)**.5
+        cv.putText(img2, str(round(edgeLen, 2)) ,(int((x2+x1)/2), int((y2+y1)/2)), font, .5,(0,0,255),2,cv.LINE_AA)
+        
 ##        for i in range(len(contours)):
 ##            cnt = contours[i]
 ##            area = cv.arcLength(cnt,True)
