@@ -3,7 +3,7 @@ import cv2
 import numpy as np 
   
 # Let's load a simple image with 3 black squares 
-image = cv2.imread(cv2.samples.findFile('buildings002.tif') )
+image = cv2.imread(cv2.samples.findFile('leav.jpg') )
 cv2.waitKey(0) 
   
 # Grayscale 

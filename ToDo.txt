@@ -1,0 +1,5 @@
+Run contours on threshold image instead of edge detected image
+
+Concatenate all contours together
+find MBR for all countours 
+this gives a single object's width and height

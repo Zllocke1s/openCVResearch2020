@@ -5,8 +5,8 @@ from PIL import Image
 fig = plt.figure()
 fig.patch.set_facecolor('xkcd:black')
 
-fn = 'buildings007.tif'
-img = cv.imread(cv.samples.findFile(fn))
+fn = 'leav.jpg'
+img = cv.imread(fn)
 edges = cv.Canny(img,200,500)
 plt.subplot(111),plt.imshow(edges,cmap = 'gray')
 #plt.title('Edge Image'), plt.xticks([]), plt.yticks([])

@@ -3,7 +3,7 @@ import cv2
 import numpy as np 
   
 # Let's load a simple image with 3 black squares 
-image = cv2.imread(('buildings00.tif') )
+image = cv2.imread(('leav.jpg') )
 cv2.waitKey(0) 
   
 # Grayscale 
@@ -26,7 +26,7 @@ print("Number of Contours found = " + str(len(contours)))
   
 # Draw all contours 
 # -1 signifies drawing all contours 
-# cv2.drawContours(image, contours, 0, (0, 255, 0), 3)
+cv2.drawContours(image, contours, -1, (0, 0, 0), 3)
 font = cv2.FONT_HERSHEY_SIMPLEX
 for i in range(len(contours)):
     cnt = contours[i]

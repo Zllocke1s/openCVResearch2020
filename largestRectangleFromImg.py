@@ -26,7 +26,7 @@ print("Number of Contours found = " + str(len(contours)))
   
 # Draw all contours 
 # -1 signifies drawing all contours 
-# cv2.drawContours(image, contours, 0, (0, 255, 0), 3)
+cv2.drawContours(image, contours, -1, (0, 0, 0), 3)
 font = cv2.FONT_HERSHEY_SIMPLEX
 maxSize = 0
 maxIndex = 0
@@ -49,6 +49,14 @@ if(contours):
     x2 = box[1][0]
     y1 = box[0][1]
     y2 = box[1][1]
+    edgeLen = ((y2-y1)**2 + (x2-x1)**2)**.5
+    cv2.putText(image, str(round(edgeLen, 2)) ,(int((x2+x1)/2), int((y2+y1)/2)), font, .5,(255,240,255),2,cv2.LINE_AA)
+
+
+    x1 = box[1][0]
+    x2 = box[2][0]
+    y1 = box[1][1]
+    y2 = box[2][1]
     edgeLen = ((y2-y1)**2 + (x2-x1)**2)**.5
     cv2.putText(image, str(round(edgeLen, 2)) ,(int((x2+x1)/2), int((y2+y1)/2)), font, .5,(255,240,255),2,cv2.LINE_AA)
     
