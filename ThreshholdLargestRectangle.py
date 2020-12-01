@@ -47,6 +47,7 @@ def main():
         font = cv.FONT_HERSHEY_SIMPLEX
         maxSize = 0
         maxIndex = 0
+        cv.imshow("Threshhold", thresh)
         for i in range(len(contours)):
             cnt = contours[i]
             

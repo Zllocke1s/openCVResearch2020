@@ -3,7 +3,7 @@ import cv2
 import numpy as np 
   
 # Let's load a simple image with 3 black squares 
-image = cv2.imread(('buildings00.tif') )
+image = cv2.imread(('images/test2.jpg') )
 cv2.waitKey(0) 
   
 # Grayscale 
@@ -26,7 +26,7 @@ print("Number of Contours found = " + str(len(contours)))
   
 # Draw all contours 
 # -1 signifies drawing all contours 
-cv2.drawContours(image, contours, -1, (0, 0, 0), 3)
+#cv2.drawContours(image, contours, -1, (0, 0, 0), 3)
 font = cv2.FONT_HERSHEY_SIMPLEX
 maxSize = 0
 maxIndex = 0
@@ -38,12 +38,15 @@ for i in range(len(contours)):
         maxIndex = i
 if(contours):    
     cnt = contours[maxIndex]
+    print(maxIndex)
+    cv2.drawContours(image, [cnt], 0, (255,0,255), 3)
     #x,y,w,h = cv.boundingRect(cnt)
     #cv.rectangle(img2,(x,y),(x+w,y+h),(0,255,0),2)
     rect = cv2.minAreaRect(cnt)
     box = cv2.boxPoints(rect)
     box = np.int0(box)
-    cv2.drawContours(image,[box],0,(0,0,255),2)
+    cv2.drawContours(image,[box],0,(255,255,255),2)
+    #cv2.drawContours(image, cnt,0,(255,255,255), 2)
     #print(box)
     x1 = box[0][0]
     x2 = box[1][0]

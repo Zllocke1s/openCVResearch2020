@@ -3,9 +3,9 @@ import cv2
 import numpy as np 
   
 # Let's load a simple image with 3 black squares 
-image = cv2.imread(('leav.jpg') )
+image = cv2.imread(('images/test2.jpg') )
 cv2.waitKey(0) 
-  
+cv2.imwrite("image_copy.png", image)   
 # Grayscale 
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) 
   
@@ -24,8 +24,11 @@ print("Number of Contours found = " + str(len(contours)))
   
 # Draw all contours 
 # -1 signifies drawing all contours 
-cv2.drawContours(image, contours, -1, (0, 0, 0), 3)
+cv2.drawContours(image, contours, -1, (255, 0, 0), 3)
 font = cv2.FONT_HERSHEY_SIMPLEX
+cv2.imshow("Threshold", thresh)
+cv2.imwrite("Threshold.png", thresh)
+cv2.imwrite("contours.png", image)
 maxSize = 0
 maxIndex = 0
 for i in range(len(contours)):

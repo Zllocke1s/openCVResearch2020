@@ -1,0 +1,3 @@
+1. obtain a linear regression of different heights and pixel lengths
+2. Using this regression, calculate the height in meters when the pixel length is the entire length of the camera.
+3. This x value should be the height of the object.

@@ -1,9 +1,9 @@
 
 import cv2 
 import numpy as np 
-  
+import time  
 # Let's load a simple image with 3 black squares 
-image = cv2.imread(cv2.samples.findFile('leav.jpg') )
+image = cv2.imread(cv2.samples.findFile('images/test1.jpg') )
 cv2.waitKey(0) 
   
 # Grayscale 
@@ -28,15 +28,28 @@ print("Number of Contours found = " + str(len(contours)))
 # -1 signifies drawing all contours 
 # cv2.drawContours(image, contours, 0, (0, 255, 0), 3)
 
-
 for i in range(len(contours)):
-    cnt = contours[i]
-    area = cv2.contourArea(cnt)
-    print(i, ": ", area)
-    epsilon = 0.1*cv2.arcLength(cnt,True)
-    cv2.drawContours(image, contours, i, (0, 255, 0), 3)
-    cv2.imshow('Contours', image)
-    cv2.waitKey(0) 
+    maxVal = 0
+    maxIndex = 0
+    for j in range(len(contours)):
+            cnt = contours[j]
+            if(maxVal<cv2.contourArea(cnt)):
+                maxVal = cv2.contourArea(contours[j])
+                maxIndex = j
+            print("adding: " + str(maxIndex) + " to image")
+            cv2.drawContours(image, contours, -1, (0, 255, 0), 2)
+            contours.pop(maxIndex)
+            cv2.imshow('Contours', image)
+            cv2.waitKey(20)
+
+#for i in range(len(contours)):
+##    cnt = contours[i]
+##    area = cv2.contourArea(cnt)
+##    print(i, ": ", area)
+##    epsilon = 0.1*cv2.arcLength(cnt,True)
+##    cv2.drawContours(image, contours, i, (0, 255, 0), 3)
+##    cv2.imshow('Contours', image)
+##    cv2.waitKey(0) 
 
 
 #cv2.fillPoly(image, pts =[contours], color=(255,255,255))
